@@ -12,3 +12,6 @@
 8. add absolute imports
 9. fix imports of routes and controllers "don't use ."
 10. remove services file and switch everything to the controller
+11. add docs to all files
+12. add unit tests and add bash script for unit test
+13. add catch and try to all controllers
