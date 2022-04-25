@@ -1,61 +1,43 @@
 const express = require('express');
-const movieController = require('../controllers').movies;
+const {
+  getMovies,
+  getMovieById,
+  createMovie,
+  updateMovie,
+  storeFetchedMovie,
+  deleteMovie,
+} = require('../controllers/movie');
 
 const router = express.Router();
+
 /**
- * @swagger
- * components:
- *   schemas:
- *     Movie:
- *       type: object
- *       required:
- *         - title
- *         - posterPath
- *         - VoteAverage
- *         - overview
- *       properties:
- *         title:
- *           type: string
- *           example: Interstellar
- *         posterPath:
- *           type: string
- *           example: image url
- *         overview:
- *           type: string
- *           example: ...description of the movie
- *         voteAverage:
- *           type: number
- *           example: 1
+ * Handle POST to /movies route.
  */
+router.post('', createMovie);
+
 /**
- * @swagger
- * /movies:
- *  post:
- *      tags:
- *          - Movies
- *      name: Create
- *      produces:
- *          - application/json
- *      consumes:
- *          - application/json
- *      summary: Create new movie object
- *      requestBody:
- *         content:
- *            application/json:
- *               schema:
- *                  $ref: '#/components/schemas/Movie' 
- 
- *      responses:
- *          '201':
- *              description: User object has been created
- *              application/json:
- *                  schema:
- *                       $ref: '#/components/schemas/Movie'
+ * Handle GET tp /movies route.
  */
-router.post('', movieController.create);
-router.get('', movieController.all);
-router.get('/store', movieController.storeFetchedMovies);
-router.get('/:id', movieController.show);
-router.put('/:id', movieController.update);
+router.get('', getMovies);
+
+/**
+ * Handle GET to /movies/store.
+ */
+router.get('/store', storeFetchedMovie);
+
+/**
+ * Handle GET to /movies route.
+ */
+router.get('/:id', getMovieById);
+
+/**
+ * Handle PUT to /movies route.
+ */
+router.put('/:id', updateMovie);
+
+/**
+ * Handle DELETE to /movies route
+ */
+router.delete('/:id', deleteMovie);
 
 module.exports = router;

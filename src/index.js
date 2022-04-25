@@ -5,11 +5,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const port = process.env.PORT;
-const swaggerJsdoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
-const { swaggerOptions } = require('./utils/swaggerOptions');
 
-const specs = swaggerJsdoc(swaggerOptions);
+const swaggerUi = require('swagger-ui-express');
 const userRoutes = require('./routes/user');
 const movieRoutes = require('./routes/movie');
 
